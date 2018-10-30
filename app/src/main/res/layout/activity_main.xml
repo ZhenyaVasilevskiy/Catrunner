@@ -1,58 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="bottom"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="8dp"
-        android:orientation="horizontal">
+    <ImageView
+        android:src="@drawable/ic_history_24dp"
+        android:id="@+id/img_history"
+        android:layout_height="24dp"
+        android:layout_width="24dp"
+        android:visibility="visible" />
+    <ImageView
+        android:src="@drawable/ic_home_25dp"
+        android:id="@+id/img_home"
+        android:layout_height="24dp"
+        android:layout_width="24dp"
+        android:visibility="visible" />
+    <ImageView
+        android:src="@drawable/ic_i_25dp"
+        android:id="@+id/img_i"
+        android:layout_height="24dp"
+        android:layout_width="24dp"
+        android:visibility="visible" />
+    <ImageView
+        android:src="@drawable/ic_cat_25dp"
+        android:id="@+id/img_cat"
+        android:layout_height="24dp"
+        android:layout_width="24dp"
+        android:visibility="visible" />
+    <ImageView
+        android:src="@drawable/ic_settings_25dp"
+        android:id="@+id/img_settings"
+        android:layout_height="24dp"
+        android:layout_width="24dp"
+        android:visibility="visible" />
 
-        <ImageButton
-            android:id="@+id/img_profile"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_weight="1"
-            android:background="white"
-            android:src="@drawable/ic_profile_24dp"/>
-
-        <ImageButton
-            android:id="@+id/img_history"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_weight="1"
-            android:background="white"
-            android:src="@drawable/ic_history_24dp"/>
-
-        <ImageButton
-            android:id="@+id/img_home"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_weight="1"
-            android:background="white"
-            android:src="@drawable/ic_home_24dp"/>
-
-        <ImageButton
-            android:id="@+id/img_settings"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_weight="1"
-            android:background="white"
-            android:src="@drawable/ic_settings_24dp"/>
-
-        <ImageButton
-            android:id="@+id/img_i"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_weight="1"
-            android:background="white"
-            android:src="@drawable/ic_i_24dp"/>
-
-    </LinearLayout>
-</RelativeLayout>
+    </RelativeLayout>

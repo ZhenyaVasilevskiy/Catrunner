@@ -1,4 +1,4 @@
-package runnercat.com.catrunner;
+package com.example.user.catrunner;
 
 import org.junit.Test;
 
