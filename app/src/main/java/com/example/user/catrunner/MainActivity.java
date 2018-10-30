@@ -1,4 +1,4 @@
-package runnercat.com.catrunner;
+package com.example.user.catrunner;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

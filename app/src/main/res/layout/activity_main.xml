@@ -1,9 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:src="@drawable/ic_history_24dp"
+        android:id="@+id/img_history"
+        android:layout_height="24dp"
+        android:layout_width="24dp"
+        android:visibility="visible" />
+    <ImageView
+        android:src="@drawable/ic_home_25dp"
+        android:id="@+id/img_home"
+        android:layout_height="24dp"
+        android:layout_width="24dp"
+        android:visibility="visible" />
+    <ImageView
+        android:src="@drawable/ic_i_25dp"
+        android:id="@+id/img_i"
+        android:layout_height="24dp"
+        android:layout_width="24dp"
+        android:visibility="visible" />
+    <ImageView
+        android:src="@drawable/ic_cat_25dp"
+        android:id="@+id/img_cat"
+        android:layout_height="24dp"
+        android:layout_width="24dp"
+        android:visibility="visible" />
+    <ImageView
+        android:src="@drawable/ic_settings_25dp"
+        android:id="@+id/img_settings"
+        android:layout_height="24dp"
+        android:layout_width="24dp"
+        android:visibility="visible" />
+
+    </RelativeLayout>
