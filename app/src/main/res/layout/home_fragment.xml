@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:gravity="center">
+
+    <ImageButton
+        android:id="@+id/btn_start"
+        android:layout_width="204dp"
+        android:layout_height="204dp"
+        android:src="@drawable/img_btn_start"
+        android:scaleType="centerCrop"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_margin="30dp"
+        android:layout_gravity="center"/>
+
+</RelativeLayout>

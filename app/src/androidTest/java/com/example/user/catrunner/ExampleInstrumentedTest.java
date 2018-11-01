@@ -1,4 +1,4 @@
-package runnercat.com.catrunner;
+package com.example.user.catrunner;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("runnercat.com.catrunner", appContext.getPackageName());
+        assertEquals("com.example.user.catrunner", appContext.getPackageName());
     }
 }
