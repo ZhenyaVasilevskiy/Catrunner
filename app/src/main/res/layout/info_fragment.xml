@@ -5,9 +5,34 @@
     android:layout_height="match_parent"
     android:background="#7737ff00"
     android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="info">
-    </TextView>
+        android:orientation="vertical"
+        android:background="@color/colorWhite">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="20sp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/txt_help"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="20sp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/txt_developers"/>
+
+    </LinearLayout>
+
+
 </LinearLayout>
