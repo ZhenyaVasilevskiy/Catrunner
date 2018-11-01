@@ -1,4 +1,9 @@
 <resources>
-    <string name="app_name">catrunner</string>
+    <string name="app_name">CatRunner</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_history">History</string>
+    <string name="title_info">About program</string>
+
     <string name="kek">You are at home</string>
 </resources>
