@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_home:
                 fragmentTransaction.replace(R.id.frgmCont, homeFragment);
                 btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp_selected));
-                Toast.makeText(MainActivity.this, getResources().getText(R.string.kek), Toast.LENGTH_LONG).show();
                 setTitle(getResources().getString(R.string.app_name));
                 break;
             case R.id.btn_history:
