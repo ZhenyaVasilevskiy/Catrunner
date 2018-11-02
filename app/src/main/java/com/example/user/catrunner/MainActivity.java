@@ -48,14 +48,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.frgmCont, homeFragment);
-        fragmentTransaction.commit();
-    }
-
     public void onClick(View v) {
         fragmentTransaction = getFragmentManager().beginTransaction();
         switch (v.getId()) {
