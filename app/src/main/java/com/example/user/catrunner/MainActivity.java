@@ -1,11 +1,10 @@
 package com.example.user.catrunner;
 
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import fragments.HistoryFragment;
 import fragments.HomeFragment;
@@ -42,14 +41,14 @@ public class MainActivity extends AppCompatActivity {
         settingsFragment = new SettingsFragment();
         infoFragment = new InfoFragment();
 //
-        fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.frgmCont, homeFragment);
         btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp_selected));
         fragmentTransaction.commit();
     }
 
     public void onClick(View v) {
-        fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
         switch (v.getId()) {
             case R.id.btn_home:
                 fragmentTransaction.replace(R.id.frgmCont, homeFragment);

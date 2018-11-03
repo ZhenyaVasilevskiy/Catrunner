@@ -1,25 +1,25 @@
 package fragments;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import com.example.user.catrunner.MapActivity;
 import com.example.user.catrunner.R;
 
 public class HomeFragment extends Fragment {
 
     public FragmentTransaction fragmentTransaction;
     public ImageButton btnStart;
+    public MapFragment mapFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mapFragment = new MapFragment();
     }
 
     @Override
@@ -36,11 +36,9 @@ public class HomeFragment extends Fragment {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.remove(HomeFragment.this);
+                fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.frgmCont, mapFragment);
                 fragmentTransaction.commit();
-                Intent intent = new Intent(getActivity(), MapActivity.class);
-                startActivity(intent);
             }
         });
     }
