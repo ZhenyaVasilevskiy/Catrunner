@@ -14,6 +14,8 @@ import android.widget.RadioButton;
 import com.example.user.catrunner.databinding.ProfileFragmentBinding;
 import com.example.user.catrunner.R;
 
+import java.util.GregorianCalendar;
+
 import viewModels.ProfileFragmentViewModel;
 
 public class ProfileFragment extends Fragment {
@@ -42,6 +44,20 @@ public class ProfileFragment extends Fragment {
                 onChangeGender();
             }
         });
+
+//        profileFragmentViewModel.getName().observe(this, new Observer<String>() {
+//            @Override
+//            public void onChanged(@Nullable String s) {
+////                profileFragmentViewModel.setName(s);
+//            }
+//        });
+
+//        profileFragmentViewModel.getDate().observe(this, new Observer<GregorianCalendar>() {
+//            @Override
+//            public void onChanged(@Nullable GregorianCalendar gregorianCalendar) {
+////                profileFragmentViewModel.setDate(strDate);
+//            }
+//        });
         return binding.getRoot();
     }
 
