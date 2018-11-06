@@ -14,6 +14,7 @@ import com.example.user.catrunner.databinding.ActivityMainBinding;
 import fragments.HistoryFragment;
 import fragments.HomeFragment;
 import fragments.InfoFragment;
+import fragments.MapFragment;
 import fragments.ProfileFragment;
 import fragments.SettingsFragment;
 import viewModels.ProfileFragmentViewModel;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public ProfileFragment profileFragment;
     public SettingsFragment settingsFragment;
     public InfoFragment infoFragment;
+    public MapFragment mapFragment;
 
     private ProfileFragmentViewModel profileFragmentViewModel;
 
@@ -50,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         profileFragment = new ProfileFragment();
         settingsFragment = new SettingsFragment();
         infoFragment = new InfoFragment();
+        mapFragment = new MapFragment();
+
         profileFragmentViewModel = ViewModelProviders.of(this).get(ProfileFragmentViewModel.class);
 
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -66,6 +70,12 @@ public class MainActivity extends AppCompatActivity {
                 onChangeFragment();
             }
         });
+//        mainViewModel.getMapOpened().observe(this, new Observer<Boolean>() {
+//            @Override
+//            public void onChanged(@Nullable Boolean aBoolean) {
+//                onChangeFragment();
+//            }
+//        });
     }
 
     public ProfileFragmentViewModel getProfileFragmentViewModel() {
@@ -78,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         onChangeFragment();
     }
 
-    private void onChangeFragment() {
+    public void onChangeFragment() {
         int currentFragment = mainViewModel.getCurrentFragment().getValue();
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         switch (currentFragment) {
@@ -107,8 +117,19 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.replace(R.id.frgmCont, infoFragment);
                 setTitle(getResources().getString(R.string.title_info));
                 break;
+            case 6:
+                btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
+                fragmentTransaction.replace(R.id.frgmCont, mapFragment);
+//                setTitle(getResources().getString(R.string.app_name));
+                break;
         }
 //        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+//        if (mainViewModel.getCurrentFragment().getValue() == )
     }
 }
