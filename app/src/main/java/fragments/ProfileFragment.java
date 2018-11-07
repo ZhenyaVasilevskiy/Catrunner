@@ -44,20 +44,6 @@ public class ProfileFragment extends Fragment {
                 onChangeGender();
             }
         });
-
-//        profileFragmentViewModel.getName().observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-////                profileFragmentViewModel.setName(s);
-//            }
-//        });
-
-//        profileFragmentViewModel.getDate().observe(this, new Observer<GregorianCalendar>() {
-//            @Override
-//            public void onChanged(@Nullable GregorianCalendar gregorianCalendar) {
-////                profileFragmentViewModel.setDate(strDate);
-//            }
-//        });
         return binding.getRoot();
     }
 

@@ -4,12 +4,16 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.view.View;
 
+import viewModels.HomeFragmentViewModel;
 import viewModels.ProfileFragmentViewModel;
 
 public class MainViewModel extends ViewModel {
 
+    private MutableLiveData<Integer> mFragment;
     private MutableLiveData<Integer> mCurrentFragment;
+    private MutableLiveData<Boolean> mMapOpened;
     private MutableLiveData<ProfileFragmentViewModel> profileFragmentViewModel;
+    private MutableLiveData<HomeFragmentViewModel> homeFragmentViewModelMutableLiveData;
 
     public MutableLiveData<ProfileFragmentViewModel> getProfileFragmentViewModel() {
         return profileFragmentViewModel;
@@ -19,8 +23,17 @@ public class MainViewModel extends ViewModel {
         this.profileFragmentViewModel = profileFragmentViewModel;
     }
 
-    public void setFragmentNumber(View view)
-    {
+    public  MutableLiveData<Boolean> getMapOpened() {
+
+        return mMapOpened;
+    }
+
+    public MutableLiveData<Integer> getFragment() {
+
+        return mFragment;
+    }
+
+    public void setFragmentNumber(View view) {
         int curFragment = 3;
         switch (view.getId()) {
             case R.id.btn_profile:
@@ -44,7 +57,7 @@ public class MainViewModel extends ViewModel {
 
     public MutableLiveData<Integer> getCurrentFragment() {
         if (mCurrentFragment == null) {
-            mCurrentFragment = new MutableLiveData<Integer>();
+            mCurrentFragment = new MutableLiveData<>();
         }
         return mCurrentFragment;
     }
