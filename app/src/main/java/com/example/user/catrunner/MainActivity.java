@@ -64,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         binding.setViewModel(mainViewModel);
+//        mainViewModel.getFragment().observe(this, new Observer<Integer>() {
+//            @Override
+//            public void onChanged(@Nullable Integer integer) {
+//                onChangeFragment(integer.intValue());
+//            }
+//        });
         mainViewModel.getCurrentFragment().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable Integer integer) {
@@ -120,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
             case 6:
                 btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
                 fragmentTransaction.replace(R.id.frgmCont, mapFragment);
-//                setTitle(getResources().getString(R.string.app_name));
+//                fragmentTransaction.addToBackStack(null);
+                setTitle(getResources().getString(R.string.app_name));
                 break;
         }
 //        fragmentTransaction.addToBackStack(null);

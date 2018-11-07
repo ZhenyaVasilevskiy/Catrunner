@@ -38,21 +38,32 @@ public class HomeFragment extends Fragment {
 //        View v = inflater.inflate(R.layout.home_fragment, null);
 //        btnStart = v.findViewById(R.id.btn_start);
 //        return v;
-        return inflater.inflate(R.layout.home_fragment, null);
-//        binding = DataBindingUtil.inflate(inflater,
-//                R.layout.home_fragment, container, false);
-//        homeFragmentViewModel = ViewModelProviders.of(this.getActivity()).get(HomeFragmentViewModel.class);
-//        binding.setViewModel(homeFragmentViewModel);
-//        homeFragmentViewModel.getMapOpened().observe(this, new Observer<Boolean>() {
-//            @Override
-//            public void onChanged(@Nullable Boolean aBoolean) {
-//
-//            }
-//        });
-//        return binding.getRoot();
+//        return inflater.inflate(R.layout.home_fragment, null);
+        binding = DataBindingUtil.inflate(inflater,
+                R.layout.home_fragment, container, false);
+        homeFragmentViewModel = ViewModelProviders.of(this.getActivity()).get(HomeFragmentViewModel.class);
+        binding.setViewModel(homeFragmentViewModel);
+        homeFragmentViewModel.getMapOpened().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable Boolean aBoolean) {
+                onChangeMapState();
+            }
+        });
+        return binding.getRoot();
     }
 
-//    @Override
+    public int onChangeMapState() {
+        boolean mapOpened = homeFragmentViewModel.getMapOpened().getValue();
+        int curFragment;
+        if (mapOpened) {
+            curFragment = 6;
+        } else {
+            curFragment = 3;
+        }
+        return curFragment;
+    }
+
+    //    @Override
 //    public void onStart() {
 //        super.onStart();
 //        btnStart.setOnClickListener(new View.OnClickListener() {

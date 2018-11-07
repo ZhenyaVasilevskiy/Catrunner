@@ -9,10 +9,11 @@ import viewModels.ProfileFragmentViewModel;
 
 public class MainViewModel extends ViewModel {
 
+    private MutableLiveData<Integer> mFragment;
     private MutableLiveData<Integer> mCurrentFragment;
+    private MutableLiveData<Boolean> mMapOpened;
     private MutableLiveData<ProfileFragmentViewModel> profileFragmentViewModel;
     private MutableLiveData<HomeFragmentViewModel> homeFragmentViewModelMutableLiveData;
-    private MutableLiveData<Boolean> mMapOpened;
 
     public MutableLiveData<ProfileFragmentViewModel> getProfileFragmentViewModel() {
         return profileFragmentViewModel;
@@ -22,26 +23,14 @@ public class MainViewModel extends ViewModel {
         this.profileFragmentViewModel = profileFragmentViewModel;
     }
 
-    public  void setMapOpened() {
-//
+    public  MutableLiveData<Boolean> getMapOpened() {
+
+        return mMapOpened;
     }
 
-//    public MutableLiveData<Boolean> getMapOpened() {
-//        if (homeFragmentViewModelMutableLiveData == null) {
-//            mMapOpened = new MutableLiveData<>();
-//            mMapOpened.setValue(false);
-//            return mMapOpened;
-//        }
-//        return homeFragmentViewModelMutableLiveData.getValue().getMapOpened();
-//    }
+    public MutableLiveData<Integer> getFragment() {
 
-    public boolean MapOpened() {
-        if (homeFragmentViewModelMutableLiveData == null) {
-            mMapOpened = new MutableLiveData<>();
-            mMapOpened.setValue(false);
-            return mMapOpened.getValue();
-        }
-        return homeFragmentViewModelMutableLiveData.getValue().getMapOpened().getValue();
+        return mFragment;
     }
 
     public void setFragmentNumber(View view) {
@@ -54,12 +43,7 @@ public class MainViewModel extends ViewModel {
                 curFragment = 2;
                 break;
             case R.id.btn_home:
-//                curFragment = 3;
-                if (MapOpened()) {
-                    curFragment = 3;
-                } else {
-                    curFragment = 6;
-                }
+                curFragment = 3;
                 break;
             case R.id.btn_settings:
                 curFragment = 4;
@@ -73,7 +57,7 @@ public class MainViewModel extends ViewModel {
 
     public MutableLiveData<Integer> getCurrentFragment() {
         if (mCurrentFragment == null) {
-            mCurrentFragment = new MutableLiveData<Integer>();
+            mCurrentFragment = new MutableLiveData<>();
         }
         return mCurrentFragment;
     }
