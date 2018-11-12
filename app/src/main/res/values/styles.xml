@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="EditText" parent="@android:style/TextAppearance">
+    <style name="LoginEditText" parent="@android:style/TextAppearance">
         <item name="colorControlNormal">@color/colorPrimaryDark</item>
         <item name="colorControlActivated">@color/colorAccentPink</item>
         <item name="colorControlHighlight">@color/colorAccentPink</item>

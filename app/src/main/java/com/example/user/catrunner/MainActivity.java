@@ -6,8 +6,12 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.user.catrunner.databinding.ActivityMainBinding;
 
@@ -18,6 +22,8 @@ import fragments.MapFragment;
 import fragments.ProfileFragment;
 import fragments.SettingsFragment;
 import viewModels.ProfileFragmentViewModel;
+
+import static com.example.user.catrunner.LoginActivity.typefaceOpenSansRegular;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_background));
+
+//        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_background));
+//        TextView textView = (TextView) getSupportActionBar().getCustomView();
+//        textView.setTypeface(typefaceOpenSansRegular);
+
         btnHistory = findViewById(R.id.btn_history);
         btnHome = findViewById(R.id.btn_home);
         btnProfile = findViewById(R.id.btn_profile);
