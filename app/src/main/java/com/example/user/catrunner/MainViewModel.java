@@ -4,16 +4,24 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.view.View;
 
-import viewModels.HomeFragmentViewModel;
+import viewModels.HomeAndMapSharedViewModel;
 import viewModels.ProfileFragmentViewModel;
 
 public class MainViewModel extends ViewModel {
 
     private MutableLiveData<Integer> mFragment;
     private MutableLiveData<Integer> mCurrentFragment;
-    private MutableLiveData<Boolean> mMapOpened;
     private MutableLiveData<ProfileFragmentViewModel> profileFragmentViewModel;
-    private MutableLiveData<HomeFragmentViewModel> homeFragmentViewModelMutableLiveData;
+
+    private HomeAndMapSharedViewModel homeAndMapSharedViewModel;
+
+    public void setHomeAndMapSharedViewModel(HomeAndMapSharedViewModel homeAndMapSharedViewModel) {
+        this.homeAndMapSharedViewModel = homeAndMapSharedViewModel;
+    }
+
+    public HomeAndMapSharedViewModel getHomeAndMapSharedViewModel() {
+        return homeAndMapSharedViewModel;
+    }
 
     public MutableLiveData<ProfileFragmentViewModel> getProfileFragmentViewModel() {
         return profileFragmentViewModel;
@@ -23,10 +31,6 @@ public class MainViewModel extends ViewModel {
         this.profileFragmentViewModel = profileFragmentViewModel;
     }
 
-    public  MutableLiveData<Boolean> getMapOpened() {
-
-        return mMapOpened;
-    }
 
     public MutableLiveData<Integer> getFragment() {
 
@@ -58,6 +62,7 @@ public class MainViewModel extends ViewModel {
     public MutableLiveData<Integer> getCurrentFragment() {
         if (mCurrentFragment == null) {
             mCurrentFragment = new MutableLiveData<>();
+            mCurrentFragment.setValue(3);
         }
         return mCurrentFragment;
     }
