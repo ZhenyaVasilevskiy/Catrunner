@@ -16,4 +16,9 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="CustomTheme" parent="Theme.AppCompat.Light">
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetEnd">0dp</item>
+    </style>
+
 </resources>
