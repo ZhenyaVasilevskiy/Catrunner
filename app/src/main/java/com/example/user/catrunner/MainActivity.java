@@ -21,6 +21,7 @@ import fragments.InfoFragment;
 import fragments.MapFragment;
 import fragments.ProfileFragment;
 import fragments.SettingsFragment;
+import viewModels.HomeAndMapSharedViewModel;
 import viewModels.ProfileFragmentViewModel;
 
 import static com.example.user.catrunner.LoginActivity.typefaceOpenSansRegular;
@@ -78,24 +79,20 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         binding.setViewModel(mainViewModel);
-//        mainViewModel.getFragment().observe(this, new Observer<Integer>() {
-//            @Override
-//            public void onChanged(@Nullable Integer integer) {
-//                onChangeFragment(integer.intValue());
-//            }
-//        });
         mainViewModel.getCurrentFragment().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable Integer integer) {
                 onChangeFragment();
             }
         });
-//        mainViewModel.getMapOpened().observe(this, new Observer<Boolean>() {
-//            @Override
-//            public void onChanged(@Nullable Boolean aBoolean) {
-//                onChangeFragment();
-//            }
-//        });
+        homeFragment.setHomeAndMapSharedViewModel(ViewModelProviders.of(this).get(HomeAndMapSharedViewModel.class));
+        mainViewModel.setHomeAndMapSharedViewModel(homeFragment.getHomeAndMapSharedViewModel());
+        mainViewModel.getHomeAndMapSharedViewModel().getMapOpened().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable Boolean aBoolean) {
+                onChangeFragment();
+            }
+        });
     }
 
     public ProfileFragmentViewModel getProfileFragmentViewModel() {
@@ -123,7 +120,14 @@ public class MainActivity extends AppCompatActivity {
                 setTitle(getResources().getString(R.string.title_history));
                 break;
             case 3:
-                fragmentTransaction.replace(R.id.frgmCont, homeFragment);
+                if (mainViewModel.getHomeAndMapSharedViewModel().getMapOpened().getValue())
+                {
+                    fragmentTransaction.replace(R.id.frgmCont, mapFragment);
+                }
+                else
+                {
+                    fragmentTransaction.replace(R.id.frgmCont, homeFragment);
+                }
                 btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp_selected));
                 setTitle(getResources().getString(R.string.app_name));
                 break;
@@ -136,12 +140,6 @@ public class MainActivity extends AppCompatActivity {
                 btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
                 fragmentTransaction.replace(R.id.frgmCont, infoFragment);
                 setTitle(getResources().getString(R.string.title_info));
-                break;
-            case 6:
-                btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
-                fragmentTransaction.replace(R.id.frgmCont, mapFragment);
-//                fragmentTransaction.addToBackStack(null);
-                setTitle(getResources().getString(R.string.app_name));
                 break;
         }
 //        fragmentTransaction.addToBackStack(null);
