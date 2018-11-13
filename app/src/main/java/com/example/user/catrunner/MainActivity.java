@@ -8,8 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -42,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     public InfoFragment infoFragment;
     public MapFragment mapFragment;
 
+    public TextView actionbarTitle;
+
     private ProfileFragmentViewModel profileFragmentViewModel;
 
     @Override
@@ -49,12 +50,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_background));
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.actionbar);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_background));
+        View view =getSupportActionBar().getCustomView();
 
-//        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_background));
-//        TextView textView = (TextView) getSupportActionBar().getCustomView();
-//        textView.setTypeface(typefaceOpenSansRegular);
+        actionbarTitle = findViewById(R.id.actionbar_title);
+        actionbarTitle.setText(getResources().getString(R.string.app_name));
+        actionbarTitle.setTypeface(typefaceOpenSansRegular);
+
+        ImageButton imageButton= (ImageButton)view.findViewById(R.id.actionbar_back);
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         btnHistory = findViewById(R.id.btn_history);
         btnHome = findViewById(R.id.btn_home);
@@ -115,33 +128,39 @@ public class MainActivity extends AppCompatActivity {
             case 1:
                 btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
                 fragmentTransaction.replace(R.id.frgmCont, profileFragment);
-                setTitle(getResources().getString(R.string.title_profile));
+                actionbarTitle.setText(getResources().getString(R.string.title_profile));
+//                setTitle(getResources().getString(R.string.title_profile));
                 break;
             case 2:
                 btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
                 fragmentTransaction.replace(R.id.frgmCont, historyFragment);
-                setTitle(getResources().getString(R.string.title_history));
+                actionbarTitle.setText(getResources().getString(R.string.title_history));
+//                setTitle(getResources().getString(R.string.title_history));
                 break;
             case 3:
                 fragmentTransaction.replace(R.id.frgmCont, homeFragment);
                 btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp_selected));
-                setTitle(getResources().getString(R.string.app_name));
+                actionbarTitle.setText(getResources().getString(R.string.app_name));
+//                setTitle(getResources().getString(R.string.app_name));
                 break;
             case 4:
                 btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
                 fragmentTransaction.replace(R.id.frgmCont, settingsFragment);
-                setTitle(getResources().getString(R.string.title_settings));
+                actionbarTitle.setText(getResources().getString(R.string.title_settings));
+//                setTitle(getResources().getString(R.string.title_settings));
                 break;
             case 5:
                 btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
                 fragmentTransaction.replace(R.id.frgmCont, infoFragment);
-                setTitle(getResources().getString(R.string.title_info));
+                actionbarTitle.setText(getResources().getString(R.string.title_info));
+//                setTitle(getResources().getString(R.string.title_info));
                 break;
             case 6:
                 btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
                 fragmentTransaction.replace(R.id.frgmCont, mapFragment);
 //                fragmentTransaction.addToBackStack(null);
-                setTitle(getResources().getString(R.string.app_name));
+                actionbarTitle.setText(getResources().getString(R.string.app_name));
+//                setTitle(getResources().getString(R.string.app_name));
                 break;
         }
 //        fragmentTransaction.addToBackStack(null);
