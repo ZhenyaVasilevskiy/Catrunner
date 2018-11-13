@@ -1,19 +1,28 @@
 package com.example.user.catrunner;
 
-import android.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+import android.arch.lifecycle.ViewModelProviders;
+import android.arch.lifecycle.Observer;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.view.View;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageButton;
-import android.widget.Toast;
+
+import com.example.user.catrunner.databinding.ActivityMainBinding;
 
 import fragments.HistoryFragment;
 import fragments.HomeFragment;
 import fragments.InfoFragment;
+import fragments.MapFragment;
 import fragments.ProfileFragment;
 import fragments.SettingsFragment;
+import viewModels.HomeAndMapSharedViewModel;
+import viewModels.ProfileFragmentViewModel;
 
 public class MainActivity extends AppCompatActivity {
+
+    private MainViewModel mainViewModel;
 
     public ImageButton btnHome;
     public ImageButton btnProfile;
@@ -26,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     public ProfileFragment profileFragment;
     public SettingsFragment settingsFragment;
     public InfoFragment infoFragment;
+    public MapFragment mapFragment;
+
+    private ProfileFragmentViewModel profileFragmentViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,54 +53,88 @@ public class MainActivity extends AppCompatActivity {
         profileFragment = new ProfileFragment();
         settingsFragment = new SettingsFragment();
         infoFragment = new InfoFragment();
-//
-        fragmentTransaction = getFragmentManager().beginTransaction();
+        mapFragment = new MapFragment();
+
+        profileFragmentViewModel = ViewModelProviders.of(this).get(ProfileFragmentViewModel.class);
+
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.frgmCont, homeFragment);
         btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp_selected));
         fragmentTransaction.commit();
+
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        binding.setViewModel(mainViewModel);
+        mainViewModel.getCurrentFragment().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable Integer integer) {
+                onChangeFragment();
+            }
+        });
+        homeFragment.setHomeAndMapSharedViewModel(ViewModelProviders.of(this).get(HomeAndMapSharedViewModel.class));
+        mainViewModel.setHomeAndMapSharedViewModel(homeFragment.getHomeAndMapSharedViewModel());
+        mainViewModel.getHomeAndMapSharedViewModel().getMapOpened().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable Boolean aBoolean) {
+                onChangeFragment();
+            }
+        });
+    }
+
+    public ProfileFragmentViewModel getProfileFragmentViewModel() {
+        return profileFragmentViewModel;
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.frgmCont, homeFragment);
-        fragmentTransaction.commit();
+        onChangeFragment();
     }
 
-    public void onClick(View v) {
-        fragmentTransaction = getFragmentManager().beginTransaction();
-        switch (v.getId()) {
-            case R.id.btn_home:
-                fragmentTransaction.replace(R.id.frgmCont, homeFragment);
-                btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp_selected));
-                Toast.makeText(MainActivity.this, getResources().getText(R.string.kek), Toast.LENGTH_LONG).show();
-                setTitle(getResources().getString(R.string.app_name));
-                break;
-            case R.id.btn_history:
-                btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
-                fragmentTransaction.replace(R.id.frgmCont, historyFragment);
-                setTitle(getResources().getString(R.string.title_history));
-                break;
-            case R.id.btn_profile:
+    public void onChangeFragment() {
+        int currentFragment = mainViewModel.getCurrentFragment().getValue();
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        switch (currentFragment) {
+            case 1:
                 btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
                 fragmentTransaction.replace(R.id.frgmCont, profileFragment);
                 setTitle(getResources().getString(R.string.title_profile));
                 break;
-            case R.id.btn_settings:
+            case 2:
+                btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
+                fragmentTransaction.replace(R.id.frgmCont, historyFragment);
+                setTitle(getResources().getString(R.string.title_history));
+                break;
+            case 3:
+                if (mainViewModel.getHomeAndMapSharedViewModel().getMapOpened().getValue())
+                {
+                    fragmentTransaction.replace(R.id.frgmCont, mapFragment);
+                }
+                else
+                {
+                    fragmentTransaction.replace(R.id.frgmCont, homeFragment);
+                }
+                btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp_selected));
+                setTitle(getResources().getString(R.string.app_name));
+                break;
+            case 4:
                 btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
                 fragmentTransaction.replace(R.id.frgmCont, settingsFragment);
                 setTitle(getResources().getString(R.string.title_settings));
                 break;
-            case R.id.btn_info:
+            case 5:
                 btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
                 fragmentTransaction.replace(R.id.frgmCont, infoFragment);
                 setTitle(getResources().getString(R.string.title_info));
                 break;
-            default:
-                break;
         }
 //        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+//        if (mainViewModel.getCurrentFragment().getValue() == )
     }
 }
