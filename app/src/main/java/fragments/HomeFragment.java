@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.SharedElementCallback;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,63 +16,42 @@ import android.widget.TextView;
 import com.example.user.catrunner.R;
 import com.example.user.catrunner.databinding.HomeFragmentBinding;
 
-import viewModels.HomeFragmentViewModel;
-import viewModels.ProfileFragmentViewModel;
+import viewModels.HomeAndMapSharedViewModel;
 
 public class HomeFragment extends Fragment {
 
     public FragmentTransaction fragmentTransaction;
     public ImageButton btnStart;
-    public MapFragment mapFragment;
+    public HomeFragment homeFragment = this;
     private HomeFragmentBinding binding;
-    private HomeFragmentViewModel homeFragmentViewModel;
+    private HomeAndMapSharedViewModel homeAndMapSharedViewModel;
+
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //homeAndMapSharedViewModel = ViewModelProviders.of(this.getActivity()).get(HomeAndMapSharedViewModel.class);
+    }
 
-//        mapFragment = new MapFragment();
+    public void setHomeAndMapSharedViewModel(HomeAndMapSharedViewModel homeAndMapSharedViewModel) {
+        this.homeAndMapSharedViewModel = homeAndMapSharedViewModel;
+    }
+
+    public HomeAndMapSharedViewModel getHomeAndMapSharedViewModel() {
+        return homeAndMapSharedViewModel;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        View v = inflater.inflate(R.layout.home_fragment, null);
-//        btnStart = v.findViewById(R.id.btn_start);
-//        return v;
-//        return inflater.inflate(R.layout.home_fragment, null);
-        binding = DataBindingUtil.inflate(inflater,
-                R.layout.home_fragment, container, false);
-        homeFragmentViewModel = ViewModelProviders.of(this.getActivity()).get(HomeFragmentViewModel.class);
-        binding.setViewModel(homeFragmentViewModel);
-        homeFragmentViewModel.getMapOpened().observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(@Nullable Boolean aBoolean) {
-                onChangeMapState();
-            }
-        });
+        binding = DataBindingUtil.inflate(inflater, R.layout.home_fragment, container, false);
+        binding.setViewModel(homeAndMapSharedViewModel);
         return binding.getRoot();
     }
 
-    public int onChangeMapState() {
-        boolean mapOpened = homeFragmentViewModel.getMapOpened().getValue();
-        int curFragment;
-        if (mapOpened) {
-            curFragment = 6;
-        } else {
-            curFragment = 3;
-        }
-        return curFragment;
+    private void init()
+    {
+
     }
 
-    //    @Override
-//    public void onStart() {
-//        super.onStart();
-//        btnStart.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////
-//            }
-//        });
-//    }
 }
