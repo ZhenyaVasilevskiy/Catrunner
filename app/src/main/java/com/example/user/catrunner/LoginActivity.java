@@ -62,7 +62,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+//================================================================
+//      этот кусок кода потом придется заменять, т.к. данные будут приходить с сервера, а сейчас он просто для примера проверок
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
+//================================================================
         TextWatcher txt = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
