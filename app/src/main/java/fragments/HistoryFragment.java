@@ -27,6 +27,7 @@ public class HistoryFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         historyElements = new ArrayList<>();
+//  добавление "элемента" истории и вывод его на экран
         historyElements.add(new HistoryElement(new GregorianCalendar(2018, Calendar.NOVEMBER, 16, 20, 50, 23), 5.3));
         historyElements.add(new HistoryElement(new GregorianCalendar(2018, Calendar.JUNE, 1, 12, 10, 46), 55.04));
         adapter = new HistoryRecyclerViewAdapter(this.getActivity(), historyElements);

@@ -8,17 +8,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.text.DateFormat;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import static com.example.user.catrunner.LoginActivity.typefaceOpenSansRegular;
+import static com.example.user.catrunner.MainActivity.typefaceRoboto;
 
 public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecyclerViewAdapter.ViewHolder> {
 
     private List<HistoryElement> mData;
     private LayoutInflater mInflater;
-//    private ItemClickListener mClickListener;
 
     // data is passed into the constructor
     public HistoryRecyclerViewAdapter(Context context, List<HistoryElement> data) {
@@ -40,8 +38,6 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
         DateFormat defaultDate = DateFormat.getDateTimeInstance();
         String text = defaultDate.format(history.getDate().getTime())+ "\n" + history.getDistance().toString() + "km";
         holder.myTextView.setText(text);
-//        holder.myTextView.setText(hi.getName());
-//        holder.myImageView.setImageDrawable(recipe.getImg());
     }
 
     // total number of rows
@@ -58,16 +54,8 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
         ViewHolder(View itemView) {
             super(itemView);
             myTextView = itemView.findViewById(R.id.txt_history_info);
-            myTextView.setTypeface(typefaceOpenSansRegular);
-//            itemView.setOnClickListener(this);
+            myTextView.setTypeface(typefaceRoboto);
         }
-
-//        @Override
-//        public void onClick(View view) {
-//            if (mClickListener != null) {
-//                mClickListener.onItemClick(view, getAdapterPosition());
-//            }
-//        }
     }
 
     // convenience method for getting data at click position
@@ -79,13 +67,4 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
         return mData.get(id).getDate();
     }
 
-    // allows clicks events to be caught
-//    void setClickListener(ItemClickListener itemClickListener) {
-//        this.mClickListener = itemClickListener;
-//    }
-
-    // parent activity will implement this method to respond to click events
-//    public interface ItemClickListener {
-//        void onItemClick(View view, int position);
-//    }
 }

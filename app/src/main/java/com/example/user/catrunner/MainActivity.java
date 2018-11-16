@@ -5,13 +5,13 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.arch.lifecycle.Observer;
 import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -31,6 +31,7 @@ import static com.example.user.catrunner.LoginActivity.typefaceOpenSansRegular;
 public class MainActivity extends AppCompatActivity {
 
     private MainViewModel mainViewModel;
+    public static Typeface typefaceRoboto;
 
     public ImageButton btnHome;
     public ImageButton btnProfile;
@@ -60,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.actionbar);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_background));
         View view =getSupportActionBar().getCustomView();
+
+        typefaceRoboto = Typeface.createFromAsset(getAssets(), "fonts/Roboto_Regular.ttf");
 
         actionbarTitle = findViewById(R.id.actionbar_title);
         actionbarTitle.setText(getResources().getString(R.string.app_name));
