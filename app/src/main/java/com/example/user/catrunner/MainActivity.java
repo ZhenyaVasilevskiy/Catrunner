@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     public MapFragment mapFragment;
 
     public TextView actionbarTitle;
+    public ImageButton btnBack;
 
     private ProfileFragmentViewModel profileFragmentViewModel;
 
@@ -61,14 +63,7 @@ public class MainActivity extends AppCompatActivity {
         actionbarTitle.setText(getResources().getString(R.string.app_name));
         actionbarTitle.setTypeface(typefaceOpenSansRegular);
 
-        ImageButton imageButton= (ImageButton)view.findViewById(R.id.actionbar_back);
-
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        btnBack = view.findViewById(R.id.actionbar_back);
 
         btnHistory = findViewById(R.id.btn_history);
         btnHome = findViewById(R.id.btn_home);
@@ -88,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.frgmCont, homeFragment);
         btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp_selected));
         fragmentTransaction.commit();
+        btnBack.setVisibility(View.INVISIBLE);
 
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
@@ -126,18 +122,17 @@ public class MainActivity extends AppCompatActivity {
                 btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
                 fragmentTransaction.replace(R.id.frgmCont, profileFragment);
                 actionbarTitle.setText(getResources().getString(R.string.title_profile));
-//                setTitle(getResources().getString(R.string.title_profile));
                 break;
             case 2:
                 btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
                 fragmentTransaction.replace(R.id.frgmCont, historyFragment);
                 actionbarTitle.setText(getResources().getString(R.string.title_history));
-//                setTitle(getResources().getString(R.string.title_history));
                 break;
             case 3:
                 if (mainViewModel.getHomeAndMapSharedViewModel().getMapOpened().getValue())
                 {
                     fragmentTransaction.replace(R.id.frgmCont, mapFragment);
+                    currentFragment = 6;
                 }
                 else
                 {
@@ -145,27 +140,28 @@ public class MainActivity extends AppCompatActivity {
                 }
                 btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp_selected));
                 actionbarTitle.setText(getResources().getString(R.string.app_name));
-//                setTitle(getResources().getString(R.string.app_name));
                 break;
             case 4:
                 btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
                 fragmentTransaction.replace(R.id.frgmCont, settingsFragment);
                 actionbarTitle.setText(getResources().getString(R.string.title_settings));
-//                setTitle(getResources().getString(R.string.title_settings));
                 break;
             case 5:
                 btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
                 fragmentTransaction.replace(R.id.frgmCont, infoFragment);
                 actionbarTitle.setText(getResources().getString(R.string.title_info));
-//                setTitle(getResources().getString(R.string.title_info));
                 break;
-            case 6:
-                btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
-                fragmentTransaction.replace(R.id.frgmCont, mapFragment);
-//                fragmentTransaction.addToBackStack(null);
-                actionbarTitle.setText(getResources().getString(R.string.app_name));
-//                setTitle(getResources().getString(R.string.app_name));
-                break;
+//            case 6:
+//                btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
+//                fragmentTransaction.replace(R.id.frgmCont, mapFragment);
+////                fragmentTransaction.addToBackStack(null);
+//                actionbarTitle.setText(getResources().getString(R.string.app_name));
+//                break;
+        }
+        if (currentFragment == 6) {
+            btnBack.setVisibility(View.VISIBLE);
+        } else {
+            btnBack.setVisibility(View.INVISIBLE);
         }
 //        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();

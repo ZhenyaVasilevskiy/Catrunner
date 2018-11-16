@@ -8,22 +8,23 @@
             type="com.example.user.catrunner.MainViewModel"/>
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorWhite"
-        android:gravity="bottom"
-        android:orientation="vertical">
+        android:layout_gravity="bottom" >
 
         <FrameLayout
             android:id="@+id/frgmCont"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorTransparent"
             android:padding="8dp">
 
             <ImageButton
@@ -79,5 +80,6 @@
 
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
+
 </layout>

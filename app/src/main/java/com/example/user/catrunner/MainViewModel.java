@@ -55,6 +55,9 @@ public class MainViewModel extends ViewModel {
             case R.id.btn_info:
                 curFragment = 5;
                 break;
+            case R.id.actionbar_back:
+                curFragment = 3;
+                break;
         }
         mCurrentFragment.setValue(curFragment);
     }
