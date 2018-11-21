@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.actionbar);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_background));
-        View view =getSupportActionBar().getCustomView();
+        View view = getSupportActionBar().getCustomView();
 
         actionbarTitle = findViewById(R.id.actionbar_title);
         actionbarTitle.setText(getResources().getString(R.string.app_name));
@@ -158,13 +158,6 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.replace(R.id.frgmCont, infoFragment);
                 actionbarTitle.setText(getResources().getString(R.string.title_info));
 //                setTitle(getResources().getString(R.string.title_info));
-                break;
-            case 6:
-                btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
-                fragmentTransaction.replace(R.id.frgmCont, mapFragment);
-//                fragmentTransaction.addToBackStack(null);
-                actionbarTitle.setText(getResources().getString(R.string.app_name));
-//                setTitle(getResources().getString(R.string.app_name));
                 break;
         }
 //        fragmentTransaction.addToBackStack(null);
