@@ -55,19 +55,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        typefaceRoboto = Typeface.createFromAsset(getAssets(), "fonts/Roboto_Regular.ttf");
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.actionbar);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_background));
-        View view =getSupportActionBar().getCustomView();
-
-        typefaceRoboto = Typeface.createFromAsset(getAssets(), "fonts/Roboto_Regular.ttf");
-
+        View view = getSupportActionBar().getCustomView();
         actionbarTitle = findViewById(R.id.actionbar_title);
         actionbarTitle.setText(getResources().getString(R.string.app_name));
         actionbarTitle.setTypeface(typefaceOpenSansRegular);
-
         btnBack = view.findViewById(R.id.actionbar_back);
 
         btnHistory = findViewById(R.id.btn_history);
