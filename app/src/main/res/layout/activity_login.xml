@@ -96,13 +96,13 @@
 
     <TextView
         android:id="@+id/btn_oops"
-        android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:text="@string/txt_oops"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="12sp"
-        android:text="@string/txt_oops" />
+        android:textSize="12sp" />
 
 </LinearLayout>

@@ -26,7 +26,6 @@ public class HomeFragment extends Fragment {
     private HomeFragmentBinding binding;
     private HomeAndMapSharedViewModel homeAndMapSharedViewModel;
 
-
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

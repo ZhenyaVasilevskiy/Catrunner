@@ -33,7 +33,7 @@
     <string name="txt_login_digits">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_</string>
     <string name="txt_create_account">Create account</string>
     <string name="txt_oops">Oops, I forgot my password</string>
-    
+
     <string name="txt_description">DESCRIPTION</string>
     <string name="txt_authors">AUTHORS</string>
     <string name="txt_share">SHARE &amp; RATE US</string>
@@ -41,4 +41,8 @@
 
     <string name="kek">You are at home</string>
     <string name="title_activity_map">Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
