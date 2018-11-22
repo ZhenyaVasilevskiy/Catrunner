@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.actionbar);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_background));
         View view = getSupportActionBar().getCustomView();
+
         actionbarTitle = findViewById(R.id.actionbar_title);
         actionbarTitle.setText(getResources().getString(R.string.app_name));
         actionbarTitle.setTypeface(typefaceOpenSansRegular);
@@ -72,17 +73,17 @@ public class MainActivity extends AppCompatActivity {
         btnSettings = findViewById(R.id.btn_settings);
         btnInfo = findViewById(R.id.btn_info);
         homeFragment = new HomeFragment();
-        historyFragment = new HistoryFragment();
-        profileFragment = new ProfileFragment();
-        settingsFragment = new SettingsFragment();
-        infoFragment = new InfoFragment();
-        mapFragment = new MapFragment();
+//        historyFragment = new HistoryFragment();
+//        profileFragment = new ProfileFragment();
+//        settingsFragment = new SettingsFragment();
+//        infoFragment = new InfoFragment();
+//        mapFragment = new MapFragment();
 
         profileFragmentViewModel = ViewModelProviders.of(this).get(ProfileFragmentViewModel.class);
 
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.frgmCont, homeFragment);
-        btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp_selected));
+        btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_selected_25dp));
         fragmentTransaction.commit();
         btnBack.setVisibility(View.INVISIBLE);
 
@@ -120,44 +121,41 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         switch (currentFragment) {
             case 1:
+                profileFragment = new ProfileFragment();
+                btnProfile.setImageDrawable(getResources().getDrawable(R.drawable.ic_cat_25dp));
+                btnHistory.setImageDrawable(getResources().getDrawable(R.drawable.ic_history_24dp));
                 btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
+                btnSettings.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings_25dp));
+                btnInfo.setImageDrawable(getResources().getDrawable(R.drawable.ic_i_25dp));
                 fragmentTransaction.replace(R.id.frgmCont, profileFragment);
                 actionbarTitle.setText(getResources().getString(R.string.title_profile));
                 break;
             case 2:
-                btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
+                historyFragment = new HistoryFragment();
                 fragmentTransaction.replace(R.id.frgmCont, historyFragment);
                 actionbarTitle.setText(getResources().getString(R.string.title_history));
                 break;
             case 3:
-                if (mainViewModel.getHomeAndMapSharedViewModel().getMapOpened().getValue())
-                {
+                if (mainViewModel.getHomeAndMapSharedViewModel().getMapOpened().getValue()) {
+                    mapFragment = new MapFragment();
                     fragmentTransaction.replace(R.id.frgmCont, mapFragment);
                     currentFragment = 6;
                 }
-                else
-                {
+                else {
                     fragmentTransaction.replace(R.id.frgmCont, homeFragment);
                 }
-                btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp_selected));
                 actionbarTitle.setText(getResources().getString(R.string.app_name));
                 break;
             case 4:
-                btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
+                settingsFragment = new SettingsFragment();
                 fragmentTransaction.replace(R.id.frgmCont, settingsFragment);
                 actionbarTitle.setText(getResources().getString(R.string.title_settings));
                 break;
             case 5:
-                btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
+                infoFragment = new InfoFragment();
                 fragmentTransaction.replace(R.id.frgmCont, infoFragment);
                 actionbarTitle.setText(getResources().getString(R.string.title_info));
                 break;
-//            case 6:
-//                btnHome.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_25dp));
-//                fragmentTransaction.replace(R.id.frgmCont, mapFragment);
-////                fragmentTransaction.addToBackStack(null);
-//                actionbarTitle.setText(getResources().getString(R.string.app_name));
-//                break;
         }
         if (currentFragment == 6) {
             btnBack.setVisibility(View.VISIBLE);
